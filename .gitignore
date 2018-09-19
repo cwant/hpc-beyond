@@ -11,3 +11,7 @@ files/*.fastq
 files/*.tsv
 scratch/
 
+# Install jekyll via bundle (e.g. bundle install --path vendor/bundle)
+Gemfile.lock
+vendor/bundle
+.bundle
