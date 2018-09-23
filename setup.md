@@ -33,6 +33,6 @@ Linux users do not need to install anything, you should be set!
 
 The files needed for this workshop can be downloaded from here:
 
-[hpc-beyond-workshop-files.tar.gz]({{site.root}}/files/bundled/hpc-beyond-workshop-files.tar.gz)
+[hpc-beyond-workshop-files.tar.gz]({{site.root}}/hpc-beyond/files/bundled/hpc-beyond-workshop-files.tar.gz)
 
-**TODO**: Move this link somewhere else and explain how to get it from the cluster. 
+**TODO**: Fix this link, move it somewhere else and explain how to get it from the cluster.
