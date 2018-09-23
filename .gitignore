@@ -9,6 +9,7 @@ files/*.gtf
 files/*.fb
 files/*.fastq
 files/*.tsv
+files/bundled/*.tar.gz
 scratch/
 
 # Install jekyll via bundle (e.g. bundle install --path vendor/bundle)

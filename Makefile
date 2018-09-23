@@ -37,7 +37,8 @@ repo-check :
 clean :
 	@rm -rf ${DST}
 	@rm -rf .sass-cache
-	@rm -rf bin/__pycache__
+	@rm -f files/bundled/*.tar.gz
+
 	@find . -name .DS_Store -exec rm {} \;
 	@find . -name '*~' -exec rm {} \;
 	@find . -name '*.pyc' -exec rm {} \;
@@ -64,6 +65,8 @@ workshop-check :
 # RMarkdown files
 RMD_SRC = $(wildcard _episodes_rmd/??-*.Rmd)
 RMD_DST = $(patsubst _episodes_rmd/%.Rmd,_episodes/%.md,$(RMD_SRC))
+BNDL_SRC = $(wildcard files/unbundled/[A-Za-z0-9]*)
+BNDL_DST = $(patsubst files/unbundled/%,files/bundled/%.tar.gz,$(BNDL_SRC))
 
 # Lesson source files in the order they appear in the navigation menu.
 MARKDOWN_SRC = \
@@ -86,11 +89,14 @@ HTML_DST = \
   ${DST}/license/index.html
 
 ## lesson-md        : convert Rmarkdown files to markdown
-lesson-md : ${RMD_DST}
+lesson-md : ${RMD_DST} ${BNDL_DST}
 
 _episodes/%.md: _episodes_rmd/%.Rmd
 	@bin/knit_lessons.sh $< $@
 
+files/bundled/%.tar.gz: files/unbundled/%
+	tar -czf $@ -C files/unbundled $*
+ 
 ## lesson-check     : validate lesson Markdown.
 lesson-check : lesson-fixme
 	@bin/lesson_check.py -s . -p ${PARSER} -r _includes/links.md

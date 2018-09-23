@@ -28,3 +28,11 @@ Note that you must restart your computer to complete the installation.
 **Linux**
 
 Linux users do not need to install anything, you should be set!
+
+## Workshop Files
+
+The files needed for this workshop can be downloaded from here:
+
+[hpc-beyond-workshop-files.tar.gz]({{site.root}}/files/bundled/hpc-beyond-workshop-files.tar.gz)
+
+**TODO**: Move this link somewhere else and explain how to get it from the cluster. 
