@@ -1,20 +1,6 @@
-# Intro to HPC 
+# HPC Beyond
 
-This lesson is focused on teaching the basics of high-performance computing (HPC). There are 4
-primary components to this lesson. Each component is budgeted half a day's worth of teaching-time,
-resulting in a two day workshop.
-
-1. UNIX fundamentals
-2. Working on a cluster
-3. Programming language introduction/review
-4. Introduction to parallel programming
-
-Sections 3 and 4 (programming) will feature two programming languages:
-[Python](https://www.python.org/) and [Chapel](http://chapel.cray.com/). There are strong arguments
-for both languages, and instructors will be able to choose which language they wish to teach in.
-
-[![Build Status](https://travis-ci.com/tkphd/hpc-intro.svg?branch=gh-pages)](
-https://travis-ci.com/tkphd/hpc-intro)
+This episode goes beyond the introductory HPC lesson, and introduces concepts related to parallelism and optimization.
 
 ## Topic breakdown and todo list
 
