@@ -30,17 +30,63 @@ reasonbly need, we can all have our jobs run sooner!
 
 ## Using the `time` command
 
-Ideally, we would like to time our runs on a system with **no other users** on them -- otherwise the work they are doing might influence the performance of your program. This also ensures that our timing is **reproducible**.
+We use the `time` command as an easy way to figure out how long our program ran. The `time` command 
+can be used to time any command we can run at the shell, even trivial ones:
 
-The measurement we are interested is **walltime**. This is the actual time the code was running, from start to finish. (The word **walltime** can be interpretted as "the time we observe looking at the time on the wall". As computational researchers who want results as fast as possible, this is the measurement type that is most important to us.xs
+```
+time echo "Howdy:
+```
+{: .bash}
 
-## Serial benchmarking exercise
+```
+Howdy
+
+real    0m0.000s
+user    0m0.000s
+sys     0m0.000s
+```
+{: .output}
+
+The measurement we are interested is **walltime** -- it shows up on the row that starts with `real`. This is the actual time the code was running, from start to finish. (The word **walltime** can be interpretted as "the time we observe looking at the time on the wall". As computational researchers who want results as fast as possible, this is the measurement type that is most important to us.
+
+The other two rows in the output are `user` and `system` measurements of CPU time. They report how much CPU time the code used (`user`), and how much time the operating system kernel spend servicing the program (`system`). They are more difficult to interpret, and we won't discuss them today.
+
+Lets compile a program that takes a non-trivial amount of time to execute.
+
+```
+mpif90 -o benchmark-demo-mpi benchmark-demo-mpi.f90 -O0
+```
+{: .bash}
+
+For fun, lets compile it again, but now we will time the compilation:
+
+```
+time mpif90 -o benchmark-demo-mpi benchmark-demo-mpi.f90 -O0
+```
+{: .bash}
+
+
+
+The `echo` command clearly isn't doing too much, so it takes very little ri
+Ideally, we would like to time our runs on a system with **no other users** on them -- otherwise the work done by others might influence the performance of your program. This also ensures that our timing is **reproducible**.
+
 
 **TODO**: Clean this up
 
-```mpif90 -o sample1 sample1d.f90 -fixed -O0```
+```
+mpif90 -o benchmark-demo-mpi benchmark-demo-mpi.f90 -O0
+```
+{: .bash}
 
 The last part of the line is "minus oh zero" (a capital letter `O` followed by the number `0` after the minus sign). It tells the compiler that we want it to do very few optimizations while compiling our code.
+
+Submit jobs
+
+```
+sbatch submit-benchmark-job.sh
+```
+{: .bash}
+
 
 ## **TODO**: Everything
 
