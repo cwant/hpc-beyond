@@ -115,3 +115,46 @@ programs into multiple source files. These files will need to be linked
 together into a running program. At this point, it makes sense to use a
 `Makefile` (or some other build system) to manage the compiling and
 linking of your program.
+
+> ## Submitting our program to the scheduler
+>
+> While it's fine to run small programs on the login node of a compute cluster,
+> most work should be submitted through the scheduler. Let's create a slurm
+> submission script called `submit-hello-job.sh`. Open an editor (e.g. Nano) and
+> type (or copy/paste) the following contents:
+>
+> ~~~
+> #!/bin/bash 
+> #SBATCH --nodes=1
+> #SBATCH --ntasks-per-node=1
+> #SBATCH --time=00:05:00
+>
+> ./hello
+> ~~~
+> {: .bash}
+>
+> We can now submit the job using the `sbatch` command:
+> ```
+> sbatch submit-hello-job.sh
+> ```
+> {: .bash}
+> This job will likely run very quickly, but if you are fast enough you can see it
+> in the queue (either in a running or a pending state):
+> ```
+> squeue -u YOUR_USER_NAME
+> ```
+> {: .bash}
+>
+> (Replace `YOUR_USER_NAME` with the username issued to you by your instructor.)
+>
+> Note that our training cluster does not use accounts like a Compute Canada cluster does.
+> On a Compute Canada cluster, we can specify our accounting group with a line in our submission
+> script like the following:
+> 
+> ```
+> #SBATCH --account=def-whatever
+> ```
+> {: .bash}
+>
+> (Replace `def-whatever` with an accounting group name that you're authorized to use.)
+{: .challenge}
