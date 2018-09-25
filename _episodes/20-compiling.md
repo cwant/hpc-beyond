@@ -85,6 +85,10 @@ We can run the program with:
 ./hello
 ```
 {: .bash}
+```
+Hello World
+```
+{: .output}
 
 Notice that we didn't just type `hello` to run our new program. Here that the dot (`.`) at the beginning of the command refers to the current directory we are in, and tells our shell where to find the `hello` program. If we did not do this, the shell may not be able to find our program, or it could even find a different hello program and run that instead. For example, in the standard path `/usr/bin`, if there is a command called `hello`.
 
@@ -102,6 +106,10 @@ Run the compiled fortran program with:
 ./hello_fortran
 ```
 {: .bash}
+```
+Hello World
+```
+{: .output}
 
 Note: the `-o` flag tells the compiler where to output the compiled machine code. If you exclude the `-o` flag, the machine code will be writen to a file called `a.out`. This compiled program can be run with:
 
@@ -120,8 +128,8 @@ linking of your program.
 >
 > While it's fine to run small programs on the login node of a compute cluster,
 > most work should be submitted through the scheduler. Let's create a slurm
-> submission script called `submit-hello-job.sh`. Open an editor (e.g. Nano) and
-> type (or copy/paste) the following contents:
+> submission script called `submit-hello-job.sh`. Open an editor (e.g. Nano)
+> and type (or copy/paste) the following contents:
 >
 > ~~~
 > #!/bin/bash 
@@ -138,8 +146,16 @@ linking of your program.
 > sbatch submit-hello-job.sh
 > ```
 > {: .bash}
-> This job will likely run very quickly, but if you are fast enough you can see it
-> in the queue (either in a running or a pending state):
+> ```
+> Submitted batch job 14
+> ```
+> {: .output}
+>
+> The job id number (`14` in this case) is important and we will need it to
+> look at the job output.
+>
+> This job will likely run very quickly, but if you are fast enough you can
+> see it in the queue (either in a running or a pending state):
 > ```
 > squeue -u YOUR_USER_NAME
 > ```
@@ -147,6 +163,17 @@ linking of your program.
 >
 > (Replace `YOUR_USER_NAME` with the username issued to you by your instructor.)
 >
+> When our job is finished, we can find the output from the program looking
+> in the slurm output file (in my case, this is called `slurm-14.out`):
+> ```
+> cat slurm-14.out
+> ```
+> {: .bash}
+> ```
+> Hello world!
+> ```
+> {: .output}
+> 
 > Note that our training cluster does not use accounts like a Compute Canada cluster does.
 > On a Compute Canada cluster, we can specify our accounting group with a line in our submission
 > script like the following:
