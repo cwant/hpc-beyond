@@ -142,6 +142,9 @@ reasonably need, we can all have our jobs run sooner!
 
 There are some metrics we can use to evaluate the performance of our parallel code:
 
+![](../assets/img/speedup-sub-super-linearity.svg)
+![](../assets/img/speedup-normal.svg)
+
 "Speedup" is a measure of parallel efficiency.
 **TODO: finish section**
 
