@@ -70,7 +70,12 @@ gcc -o hello hello.c
 ```
 {: .bash}
 
-(TODO: icc)
+Note: on a cluster with the Intel compiler installed, we could compile the same program using:
+
+```
+icc -o hello hello.c
+```
+{: .bash}
 
 ## Running our compiled C program
 
