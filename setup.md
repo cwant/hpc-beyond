@@ -16,23 +16,52 @@ Please follow the directions below to install an SSH client for your system.
 
 **Windows**
 
-Install MobaXterm from [http://mobaxterm.mobatek.net](http://mobaxterm.mobatek.net).
+Test to see if SSH is installed on your computer by bringing up a command
+prompt (type `cmd` from the application search). From the command
+prompt, type `ssh` and see if windows finds a program by that name.
+
+If `ssh` is not found, but you have Git Bash installed, run Git Bash and
+you should have access to the `ssh` command from there.
+
+If all else fails, you can install MobaXterm from [http://mobaxterm.mobatek.net](http://mobaxterm.mobatek.net).
 You will want to get the Home edition (Installer edition).
 
-**macOS**
+**MacOS**
 
-Although macOS comes with SSH pre-installed, 
-you will likely want to install [XQuartz](www.xquartz.org) to enable graphical support.
-Note that you must restart your computer to complete the installation.
+MacOS comes with SSH pre-installed, you can run it from the terminal program.
 
 **Linux**
 
 Linux users do not need to install anything, you should be set!
 
+## Connecting to the training cluster
+
+Your instructor will have given you a username and password to our training cluster.
+From a prompt on your computer, you can type:
+
+```
+ssh YOURUSERNAME@training.uofa.c3.ca
+```
+{: .bash}
+
 ## Workshop Files
 
 The files needed for this workshop can be downloaded from here:
 
-[hpc-beyond-workshop-files.tar.gz]({{site.root}}/hpc-beyond/files/bundled/hpc-beyond-workshop-files.tar.gz)
+[hpc-beyond-workshop-files.tar.gz](../files/bundled/hpc-beyond-workshop-files.tar.gz)
 
-**TODO**: Fix this link, move it somewhere else and explain how to get it from the cluster.
+You will want to download and decompress this file into your account on the training cluster. You can do so using the commands:
+
+<!-- **TODO**: remove hardcoded site -->
+```
+wget https://cwant.github.io/hpc-beyond/files/bundled/hpc-beyond-workshop-files.tar.gz
+tar xzf hpc-beyond-workshop-files.tar.gz
+```
+{: .bash}
+
+You can now go into the workshop files directory:
+
+```
+cd hpc-beyond-workshop-files
+```
+{: .bash}
