@@ -3,12 +3,99 @@ title: "Compiling MPI code on a cluster"
 teaching: 15
 exercises: 5
 questions:
-- "How do I compile MPI programs?"
+- "How do I compile and run MPI programs?"
 objectives:
 - "Be able to compile and run an MPI program"
 keypoints:
-- "**TODO**: think of a keypoint"
+- "mpicc compiles MPI code written in C"
+- "mpif90 compiles MPI code written in Fortran (90)"
+- "mpirun is used to run MPI programs, specifying the number of processors with the -np flag"
+- "The rank of an MPI process does not determine which process starts or finishes first"
 ---
 
-**TODO**: Switch page content to MPI hello world.
-**TODO**: Add slurm submission of program
+**TODO**: Say a bit about MPI
+
+## Compiling an MPI C program
+
+There is an MPI program written in C in the workshop files. In this version of
+the program, each separate parallel process says 'Hello world', and reports it's
+rank. The **rank** of an MPI process is a number between one and the number of
+processors you are running on that serves as an ID number for the process. 
+
+We compile the program with the `mpicc` program:
+
+```
+mpicc -o hello-mpi hello-mpi.c
+```
+{: .bash}
+
+## Running an MPI program
+
+We use the `mpirun` program to run the compiled MPI program:
+```
+mpirun -np 4 hello-mpi
+```
+{: .bash}
+```
+Hello world from 2 training01.training.uofa.c3.ca
+Hello world from 3 training01.training.uofa.c3.ca
+Hello world from 0 training01.training.uofa.c3.ca
+Hello world from 1 training01.training.uofa.c3.ca
+```
+{: .output}
+
+The flag `-np` specifies how many processors we want to run on (in this case 4).
+Look at the output and notice that the rank reported by each process is not
+in numerical order -- the ranks are reported in the order that the print commands
+are executed for the processes.
+
+## Compiling and running an MPI FORTRAN program
+
+In the workshop files, there is a 'hello world' MPI program written in FORTRAN.
+We compile it with:
+
+```
+mpif90 -o hello-mpi-fortran hello-mpi.f90
+```
+{: .bash}
+
+It is run in the exact same way that we ran the C program:
+
+```
+mpirun -np 4 hello-mpi-fortran
+```
+{: .bash}
+```
+ Hello world from            0
+ Hello world from            1
+ Hello world from            3
+ Hello world from            2
+```
+{: .output}
+
+> ## Submitting our program to the scheduler
+>
+> Let's create a slurm submission script called `submit-hello-mpi-job.sh`.
+> Open an editor (e.g. Nano) and type (or copy/paste) the following contents:
+>
+> ~~~
+> #!/bin/bash 
+> #SBATCH --nodes=1
+> #SBATCH --ntasks-per-node=4
+> #SBATCH --time=00:05:00
+>
+> mpirun -np 4 hello-mpi
+> ~~~
+> {: .bash}
+>
+> Notice that the number of processors we are requesting matches the number of
+> processors we are telling MPI to run with
+>
+> We can now submit the job using the `sbatch` command:
+> ```
+> sbatch submit-hello-mpi-job.sh
+> ```
+> {: .bash}
+> As with previous examples, note the job id and check your job in the queue.
+> Take a look at the output file when the job completes
+{: .challenge}
