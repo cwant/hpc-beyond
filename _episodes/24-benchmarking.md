@@ -47,7 +47,6 @@ mpif90 -o benchmark-demo-mpi benchmark-demo-mpi.f90 -O0
 The last part of the line is "minus oh zero" (a capital letter `O` followed by the number `0` after the minus sign). It tells the compiler that we want it to do very few optimizations while compiling our code.
 
 For GNU compilers, this (`-O0`) is the default optimization level -- it generates slower code, but is quick to compile.
-**TODO: figure out what this program actually does.**
 
 For fun, lets compile it again, but now we will time the compilation:
 
