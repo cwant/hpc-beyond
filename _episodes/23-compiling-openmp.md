@@ -36,7 +36,7 @@ OpenMP program.
 
 ## Running an OpenMP program
 
-We run the compiled program, using the environment variable 'OMP_NUM_THREADS` to control the number of threads:
+We run the compiled program, using the environment variable `OMP_NUM_THREADS` to control the number of threads:
 ```
 OMP_NUM_THREADS=4 ./hello-omp 
 ```
@@ -49,6 +49,16 @@ Hello World from thread = 1
 Hello World from thread = 3
 ```
 {: .output}
+
+An alternative is to export the environment variable `OMP_NUM_THREADS` into our shell.
+Each time we run the program after this, we don't need to set the number of threads:
+
+```
+export OMP_NUM_THREADS=4
+./hello-omp 
+```
+{: .bash}
+```
 
 The thread numbers are reported in a somewhat random order, much like the
 MPI program's ranks were reported.
