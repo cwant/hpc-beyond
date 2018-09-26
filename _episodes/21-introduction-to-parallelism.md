@@ -49,9 +49,43 @@ This table summarizes some situations that might drive your choice of parallel p
 
 ## Impact of choices of parallel job type on scheduling.
 
-**TODO**: Finish impact on scheduling of parallel job type
+### Running many serial jobs
+
+In terms of scheduling, this is the best situation to be in, because
+you can submit each job separately. Each of the jobs will be asking for
+a single CPU, and will have different start times.
+
+In your Slurm submission script, you will have a line that looks like:
+
+```
+#SBATCH        --ntasks=1
+```
 
 ![](../assets/img/parallel-many-serial.png)
+
+### Running a distributed memory job (e.g. MPI) 
+
+Because each process of this kind of job has it's own private
+memory space, these sorts of jobs can run on multiple machines and
+can scale up in size more easily than other parallelism types.
+
+In terms of scheduling, each process has to start at the same time
+so need to fit in a block of many processors, potentially on
+different machines, and is harder to schedule than using many
+serial jobs.
+
 ![](../assets/img/parallel-mpi.png)
+
+### Running a shared memory job (e.g. OpenMP) 
+
+On a single machine, all of the threads start at the same time
+so need to fit in a block of many processors on the same machine.
+
 ![](../assets/img/parallel-openmp.png)
+
+### Running a mixed, hybrid job (e.g. OpenMP) 
+
+Multiple blocks on multiple machines need to be available for
+this job to run.
+
 ![](../assets/img/parallel-hybrid.png)
