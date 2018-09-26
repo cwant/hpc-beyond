@@ -61,6 +61,9 @@ module load gcc
 ```
 {: .bash}
 
+We can also add this to the file `.bashrc` in our home directory so that when the
+right compiler is chosen everytime we login.
+
 ## Compiling our first C program
 
 Now that we have a compiler loaded, lets compile a simple C program
