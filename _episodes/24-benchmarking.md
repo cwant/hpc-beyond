@@ -1,5 +1,5 @@
 ---
-title: "Benchmarking"
+title: "Benchmarking and Optimization"
 teaching: 25
 exercises: 20
 questions:
@@ -10,6 +10,7 @@ objectives:
 - "Be able to benchmark parallel programs"
 keypoints:
 - "Deciding how many processors to run on is an iterative task"
+- "Speedup and efficiency are two measures that can help us figure out how many processors to run on"
 ---
 
 ## Using the `time` command to benchmark code
@@ -138,30 +139,114 @@ that blocks another user from running a job. If we know that asking for an addit
 small effect on the total running time, let another user use that core instead. By only asking for what we
 reasonably need, we can all have our jobs run sooner!
 
-### Speedup and Parallel Efficiency
+## Parallel Speedup and Efficiency
 
-There are some metrics we can use to evaluate the performance of our parallel code:
+We've already mentioned walltime, but there are some other metrics we can use to evaluate the
+performance of our parallel code.
+
+### Speedup
+
+In parallel computingm **speedup** is defined as the ratio of the walltime used to run a serially
+on one core (`T_s`) divided by the walltime taken to run a parallel version of the program on
+`p` processors (`T_s`):
+
+```
+S = T_s / T_p
+```
+
+(The strict definition assumes the programs are the best possible algorithms in both cases.)
+
+For example, if a serial program takes two hours to run and with 4 processors, it takes one hour,
+the speed up is `S = T_s / T_4 = 2 / 1 = 2`. Using four processors instead of one made the code
+run **2 times faster**. In a perfect world, we would have liked to have the code run **4 times faster**
+on 4 processors.
+
+We can run our code with varying numbers of processors to generate a speedup profile, and
+plot the number of processors against the speedup (see below).
+
+When the speedup is exactly equal to the number of processors we give to the parallel task, we call
+this **linear speedup** and we call the task **embarrassingly parallel**. An example of a task that
+is often considered to be close to embarassingly parallel is 3d rendering -- generating images from
+3d geometry using lighting and shading algorithms (provided that each processor renders a sampling
+of the pixels of the same complexity).
+
+In reality, most parallel programs don't exhibit linear speedup, and the speedup will be
+less than the number of processors given to do the work. In this case the speedup is called
+**sublinear**.
+
+Very rarely, the speedup of a parallel task will be greater than the number of processors the
+program is run on, and this is called **superlinear** speedup. This might happen if moving the
+work to multiple processor improves memory access -- for example, if the serial process was
+taxing the memory of a single computer, and moving to multiple nodes alleviated the problem,
+then the speedup might look superlinear.
+
+The following graphs shows these speedup types:
 
 ![](../assets/img/speedup-sub-super-linearity.svg)
+
+What typically happens in practice is that as you throw more processors at
+a problem, the speedup becomes worse and worse. You may see superlinear
+speedup at a low number of processors (but not likely), and that initial
+advantage will decay as more processors are added -- at some point adding
+more processors will reduce the running time as the influence of the serial parts
+of your code dwarf the influence of the parallel parts (see Amdahls Law):
+
 ![](../assets/img/speedup-normal.svg)
 
-"Speedup" is a measure of parallel efficiency.
-**TODO: finish section**
+### Efficiency
 
-Submit jobs
+The **efficiency** of a parallel program is defined as the speedup divided
+by the number of processors. This intuitively gives a measure of how well each
+processor was utilized. In the linear speedup case, the efficiency with be
+**1.0** (**100%** efficient). In the sublinear case, the efficiency will be less than one
+and in the superlinear case, the efficiency will be greater than one.
+
+In the example about, the speed up was 2 on 4 processors, so the parallel efficiency
+of the code is 50% (0.5).
+
+> ## Interpreting speedups and efficiency
+> This webpage has some javascript that plots the walltime, speedup, and efficiency
+> of a parallel code:
+>
+> [https://jsfiddle.net/cwant/rf48toug/](https://jsfiddle.net/cwant/rf48toug/){:target="_blank"}
+>
+> The walltime for various runs on 1, 2, 4, 8, and 16 processors are in the Javascript
+> frame of the page.
+>
+> Given the timings and the graphs, how many processors would you run the code on?
+> To answer this you, will need to think about what is important to you: having
+> your code run as fast as possible, or do you care about efficiency?
+{: .challenge}
+
+## Submitting a job to time execution of a parallel code
+
+Included with the workshop files is a job submission script called. `submit-benchmark-job.sh`.
+Look in this file -- it executes our benchmark program we compiled above 1, 2 and 4 processors.
+It writes the timing information to the file `out.time`. Submit this job to slurm:
 
 ```
 sbatch submit-benchmark-job.sh
 ```
 {: .bash}
 
-**TODO: flesh this out**
+When the job finishes, check out the lines in the file `out.time` that have the word `real`:
 
-[JS for plotting Timing, Speedup, and Efficiency](https://jsfiddle.net/cwant/rf48toug/){:target="_blank"}
+```
+grep real out.time
+```
+{: .bash}
+```
+real    0m8.100s
+real    0m4.473s
+real    0m3.054s
+```
+{: .output}
+This will give you the timings on one, two and four processors.
 
-**TODO**: get users to discuss among themselves where the sweet spot is
-Do you only care about walltime, or do you also care about efficiency? The answer to these will infllsdjfkewrlfjwe
-Add comment about many serial runs possibly being good for a parameter sweep situation
-
-**TODO**: This job might have problems because it runs pretty quick anyways, so the overhead of setting up the parallelism might outweight the advantage from parallelism
-
+> ## Graphing your times
+> Revisit the website with the Javascript speedup grapher mentioned above,
+> and replace the timings with the timings you get for one, two and four processors
+> (delete the lines with eight and sixteen processors).
+> Press the run button to generate the walltime, speedup, and efficiency graphs
+> for your benchmark runs.
+{: .challenge}
