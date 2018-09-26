@@ -12,7 +12,11 @@ keypoints:
 - "The program generated is run as usual, but the number of processors is controlled with the `OMP_NUM_THREADS` environment variable"
 ---
 
-**TODO**: Say a bit about OpenMP
+From Wikipedia:
+
+> OpenMP (Open Multi-Processing) is an application programming interface (API) that supports multi-platform shared memory multiprocessing programming in C, C++, and Fortran, ... . It consists of a set of compiler directives, library routines, and environment variables that influence run-time behavior.
+
+OpenMP programs are typically compiled with a standard compiler (e.g. `gcc` or `gfortran`), with an option applied to modify the compiler's behaviour to understand OpenMP directives.
 
 ## Compiling an OpenMP C program
 
