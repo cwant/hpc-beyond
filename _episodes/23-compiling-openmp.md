@@ -1,7 +1,7 @@
 ---
 title: "Compiling OpenMP code on a cluster"
 teaching: 15
-exercises: 5
+exercises: 10
 questions:
 - "How do I compile and run OpenMP programs?"
 objectives:

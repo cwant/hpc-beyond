@@ -1,7 +1,7 @@
 ---
 title: "Introduction to Parallelism"
-teaching: 15
-exercises: 5
+teaching: 25
+exercises: 0
 questions:
 - "What is parallelism?"
 - "What types of parallel jobs are there?"

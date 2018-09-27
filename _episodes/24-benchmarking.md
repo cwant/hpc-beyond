@@ -1,7 +1,7 @@
 ---
 title: "Benchmarking and Optimization"
-teaching: 25
-exercises: 20
+teaching: 30
+exercises: 25
 questions:
 - "How do I benchmark programs?"
 - "Can the compiler help optimize code for me?"
