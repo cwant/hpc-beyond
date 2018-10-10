@@ -215,6 +215,7 @@ of the code is 50% (0.5).
 > Given the timings and the graphs, how many processors would you run the code on?
 > To answer this you, will need to think about what is important to you: having
 > your code run as fast as possible, or do you care about efficiency?
+> Another important consideration when thinking about this: are you only running this job once? What if you need to run this type of job ten thousand times?
 {: .challenge}
 
 ## Submitting a job to time execution of a parallel code
