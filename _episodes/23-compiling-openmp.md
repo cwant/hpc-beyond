@@ -15,6 +15,7 @@ keypoints:
 From Wikipedia:
 
 > OpenMP (Open Multi-Processing) is an application programming interface (API) that supports multi-platform shared memory multiprocessing programming in C, C++, and Fortran, ... . It consists of a set of compiler directives, library routines, and environment variables that influence run-time behavior.
+{: .quotation}
 
 OpenMP programs are typically compiled with a standard compiler (e.g. `gcc` or `gfortran`), with an option applied to modify the compiler's behaviour to understand OpenMP directives.
 
@@ -94,3 +95,5 @@ OMP_NUM_THREADS=4 ./hello-omp-fortran
 > **2 threads**.
 > Submit your script to slurm and checkout the job output.
 {: .challenge}
+
+{% include links.md %}

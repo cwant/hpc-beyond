@@ -134,14 +134,14 @@ linking of your program.
 > submission script called `submit-hello-job.sh`. Open an editor (e.g. Nano)
 > and type (or copy/paste) the following contents:
 >
-> ~~~
+> ```
 > #!/bin/bash 
 > #SBATCH --nodes=1
 > #SBATCH --ntasks-per-node=1
 > #SBATCH --time=00:05:00
 >
 > ./hello
-> ~~~
+> ```
 > {: .bash}
 >
 > We can now submit the job using the `sbatch` command:
@@ -188,3 +188,5 @@ linking of your program.
 >
 > (Replace `def-whatever` with an accounting group name that you're authorized to use.)
 {: .challenge}
+
+{% include links.md %}

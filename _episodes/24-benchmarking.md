@@ -250,3 +250,5 @@ This will give you the timings on one, two and four processors.
 > Press the run button to generate the walltime, speedup, and efficiency graphs
 > for your benchmark runs.
 {: .challenge}
+
+{% include links.md %}

@@ -89,3 +89,5 @@ Multiple blocks on multiple machines need to be available for
 this job to run.
 
 ![](../assets/img/parallel-hybrid.png)
+
+{% include links.md %}
