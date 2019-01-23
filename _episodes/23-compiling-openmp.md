@@ -58,7 +58,6 @@ export OMP_NUM_THREADS=4
 ./hello-omp 
 ```
 {: .bash}
-```
 
 The thread numbers are reported in a somewhat random order, much like the
 MPI program's ranks were reported.
