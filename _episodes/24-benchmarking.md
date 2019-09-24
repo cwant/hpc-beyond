@@ -147,7 +147,7 @@ performance of our parallel code.
 
 In parallel computing, **speedup** is defined as the ratio of the walltime used to run a serially
 on one core (`T_s`) divided by the walltime taken to run a parallel version of the program on
-`p` processors (`T_s`):
+`p` processors (`T_p`):
 
 ```
 S = T_s / T_p
